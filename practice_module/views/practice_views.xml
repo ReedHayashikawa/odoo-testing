@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Tree / List View(First Page) -->
+    <record id="major_tree_view" model="ir.ui.view" >
+      <field name="name">Major</field>
+      <field name="model">practice.module</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="order_dates"/>
+          <field name="notes"/>
+          <field name="quantity"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- KANBAN VIEW -->
+    <record id="view_all_products_kanban" model="ir.ui.view">
+      <field name="name">kanban.product.details</field>
+      <field name="model">practice.module</field>
+      <!-- <field name="sequence">20</field> -->
+      <field name="arch" type="xml">
+        <kanban default_group_by="name">
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                <div class="oe_dropdown_kanban">
+                  <!-- INSERTED -->
+                  <!-- dropdown menu -->
+                  <div class="oe_dropdown_toggle">
+                      <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                      <ul class="oe_dropdown_menu">
+                          <li>
+                              <a type="delete">Delete</a>
+                          </li>
+                          <li>
+                              <ul class="oe_kanban_colorpicker"
+                                  data-field="color"/>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="oe_clear"></div>
+                </div>
+              </div>
+                <!-- INSERTED -->
+                <div t-attf-class="oe_kanban_content">
+                <!-- title -->
+                Session name:
+                <field name="name"/>
+                <br/>
+                Order Date:
+                <field name="order_dates"/>
+                <br/>
+                Description:
+                <field name="notes"/>
+                <br/>
+                Quantity:
+                <field name="quantity"/>
+                <br/>
+                Status:
+                <field name="status"/>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- Form View (Second Page) -->
+    <record id="major_form_view" model="ir.ui.view">
+      <field name="name">major.form</field>
+      <field name="model">practice.module</field>
+      <field name="arch" type="xml">
+        <form string="Major Form">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="order_dates"/>
+                <field name="notes"/>
+                <field name="quantity"/>
+                <field name="status"/> 
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+<!-- SEARCH VIEW -->
+<!--     <record id="partner_search_view" model="ir.ui.view">
+      <field name="name">item.search</field>
+      <field name="model">practice.module</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <filter name="name" string="name"
+                    domain="[('Product', '=', uid)]"/>
+
+            <filter name="Students" string="Students"
+                    domain="[('instructor','!=', uid)]"/>
+        </search>
+      </field>
+    </record> -->
+
+
+    <!-- Action Call -->
+    <record id="action_product_list" model="ir.actions.act_window" >
+      <field name="name">Product List</field>
+      <field name="res_model">practice.module</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+      <!--________________________________Top menu item____________________________________-->
+
+    <menuitem id="product_menu_root"
+        name="Practice Module"  
+        sequence="0"/>
+        <!-- menu categories -->
+
+    <menuitem id="academy_menu_school" 
+        name="Menu Tab" 
+        parent="product_menu_root"
+        action="practice_module.action_product_list"
+        sequence="1"/>    
+</odoo> 
