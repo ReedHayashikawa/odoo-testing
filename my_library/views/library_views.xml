@@ -8,18 +8,18 @@
         <field name="arch" type="xml">
             <form>
               <header>
-                <button name="book_rent" string="Rent this book" type="object" class="btn-primary"/>
+                <!-- <button name="book_rent" string="Rent this book" type="object" class="btn-primary"/>
                 <button name="make_available" string="Make Available" type="object" />
                 <button name="make_borrowed" string="Make Borrowed" type="object" />
                 <button name="make_lost" string="Make Lost" type="object" />
                 <button name="average_book_occupation" string="Log Average Occ." type="object" />
-                <field name="state" widget="statusbar"/>
+                <field name="state" widget="statusbar"/> -->
               </header>
               <sheet>
                 <group> <!-- one group/ 2 groups in 2 columns -->
                     <group>
                         <field name="name"/>
-                        <field name="category_id"/>
+                        <!-- <field name="category_id"/> -->
                         <field name="cost_price"/>
                         <field name="author_ids"/>
                         <field name="state"/>
@@ -29,17 +29,17 @@
                     </group>
                     <group>
                         <field name="date_release"/>
-                        <field name="age_days"/>
+                        <!-- <field name="age_days"/> -->
                         <!-- <field name="active"/> -->
                         <field name="author_ids" widget="many2many_tags"/>
                         <field name="short_name"/>
-                        <field name="date_updated"/>
+                        <!-- <field name="date_updated"/>
                         <field name="cover" widget="image" class="oe_avatar"/>
                         <field name="reader_rating"/>
                         <button name="book_rent"
                         string="Rent this book"
                         type="object"
-                        class="btn-primary"/>
+                        class="btn-primary"/> -->
                     </group>
                 </group>
                 <group>
@@ -78,7 +78,7 @@
       </field>
     </record>
 
-    <!-- INHERITANCE VIEW PRACTICE -->
+    <!-- INHERITANCE VIEW PRACTICE
     <record model="ir.ui.view" id="view_partner_form">
       <field name="name">res.partner.form.inherit</field>
       <field name="model">res.partner</field>
@@ -95,7 +95,7 @@
           </page>
         </notebook>
       </field>
-    </record>
+    </record> -->
 
     <!--ACTION -->
     <record id='library_book_action' 

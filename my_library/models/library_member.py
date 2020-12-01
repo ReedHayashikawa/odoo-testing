@@ -2,11 +2,11 @@ class LibraryMember(models.Model):
     _name = 'library.member'
     _inherits = {'res.partner': 'partner_id'}
 
-    partner_id = fields.Many2one(
-        'res.partner',
-        ondelete='cascade',
-        delegate=True
-    )
+    # partner_id = fields.Many2one(
+    #     'res.partner',
+    #     ondelete='cascade',
+    #     delegate=True
+    # )
 
     """ Instead of _inherits """
     """ partner_id = fields.Many2one(
@@ -16,7 +16,7 @@ class LibraryMember(models.Model):
     ) """
 
 
-    date_start = fields.Date('Member Since')
-    date_end = fields.Date('Termination Date')
-    member_number = fields.Char()
-    date_of_birth = fields.Date('Date of birth')
+    # date_start = fields.Date('Member Since')
+    # date_end = fields.Date('Termination Date')
+    # member_number = fields.Char()
+    # date_of_birth = fields.Date('Date of birth')
