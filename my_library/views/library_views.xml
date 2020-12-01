@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- FORM VIEW -->
+    <record id="library_book_view_form" model="ir.ui.view">
+        <field name="name">Library Book Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                <button name="book_rent" string="Rent this book" type="object" class="btn-primary"/>
+                <button name="make_available" string="Make Available" type="object" />
+                <button name="make_borrowed" string="Make Borrowed" type="object" />
+                <button name="make_lost" string="Make Lost" type="object" />
+                <button name="average_book_occupation" string="Log Average Occ." type="object" />
+                <field name="state" widget="statusbar"/>
+              </header>
+              <sheet>
+                <group> <!-- one group/ 2 groups in 2 columns -->
+                    <group>
+                        <field name="name"/>
+                        <field name="category_id"/>
+                        <field name="cost_price"/>
+                        <field name="author_ids"/>
+                        <field name="state"/>
+                        <field name="pages"/>
+                        <field name="notes"/>
+                        <field name="publisher_id"/>
+                    </group>
+                    <group>
+                        <field name="date_release"/>
+                        <field name="age_days"/>
+                        <!-- <field name="active"/> -->
+                        <field name="author_ids" widget="many2many_tags"/>
+                        <field name="short_name"/>
+                        <field name="date_updated"/>
+                        <field name="cover" widget="image" class="oe_avatar"/>
+                        <field name="reader_rating"/>
+                        <button name="book_rent"
+                        string="Rent this book"
+                        type="object"
+                        class="btn-primary"/>
+                    </group>
+                </group>
+                <group>
+                  <field name="description"/>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree / List View(First Page) -->
+    <record id="library_book_view_tree" model="ir.ui.view" >
+      <field name="name">Library Book List</field>
+      <field name="model">library.book</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="date_release"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Custom Search Options-->
+    <record id="library_book_view_search" model="ir.ui.view" >
+      <field name="name">Library Book Search</field>
+      <field name="model">library.book</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="publisher_id"/>
+            <field name="author_ids"/>
+            <filter string="No Authors"
+                    name="without_author"
+                    domain="[('author_ids', '=', False)]"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- INHERITANCE VIEW PRACTICE -->
+    <record model="ir.ui.view" id="view_partner_form">
+      <field name="name">res.partner.form.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <notebook position="inside">
+          <page string="Published Books">
+            <field name="published_book_ids" colspan="4" nolabel="1"/>
+          </page>
+        </notebook>
+        <notebook position="inside">
+          <page string="Authored Books">
+            <field name="authored_book_ids" colspan="4" nolabel="1"/>
+          </page>
+        </notebook>
+      </field>
+    </record>
+
+    <!--ACTION -->
+    <record id='library_book_action' 
+    model='ir.actions.act_window'>
+        <field name="name">Library Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- TOP MENU ITEMS -->
+    <menuitem name="My Library" id="library_base_menu" />
+    <menuitem name="Books" id="library_book_menu"
+    parent="library_base_menu" action="library_book_action"/>
+
+</odoo>
