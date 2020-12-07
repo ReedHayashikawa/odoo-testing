@@ -19,6 +19,7 @@
                 <group> <!-- one group/ 2 groups in 2 columns -->
                     <group>
                         <field name="name"/>
+                        <field name="ref_doc_id"/>
                         <!-- <field name="category_id"/> -->
                         <field name="cost_price"/>
                         <field name="author_ids"/>

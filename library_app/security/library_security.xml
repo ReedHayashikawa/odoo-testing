@@ -1,0 +1,11 @@
+<odoo>
+    <record id='library_category' model='ir.module.category'>
+        <field name='name'>Library</field>
+    </record>
+
+    <record id='library_user' model='res.groups'>
+        <field name='name'>User</field>
+        <field name='category_id' ref='library_category' />
+    </record>
+
+</odoo>

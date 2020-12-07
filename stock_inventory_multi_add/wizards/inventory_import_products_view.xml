@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- FORM -->
+    <record id="view_import_product_to_inventory" model="ir.ui.view">
+        <field name="name">import.products.to.inventory.form</field>
+        <field name="model">inventory.import.products</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <field name="products" />
+                <footer>
+                    <!-- calls function -->
+                    <button name="select_products" string="Confirm" type="object" class="oe_highlight"/>   
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_import_product_to_sale" model="ir.actions.act_window">
+        <field name="name">Import Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">inventory.import.products</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_import_product_to_inventory"/>
+        <field name="target">new</field> <!-- dialog/popup -->
+    </record>
+
+</odoo>

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 {
     'name': 'Practice Module',
     'website': 'www.examplewebsite.com',

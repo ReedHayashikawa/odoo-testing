@@ -70,11 +70,6 @@ class LibraryBook(models.Model):
     #     readonly=True
     # )
 
-    # # Reference field
-    # ref_doc_id = fields.Reference(
-    #     selection='_referencable_models', string='Reference Document'
-    # )
-
     # # Computed fields
     # age_days = fields.Float(
     #     string='Days Since Release',
@@ -146,10 +141,17 @@ class LibraryBook(models.Model):
     #         if record.date_release and record.date_release > fields.Date.today():
     #             raise models.ValidationError('Release date must be in the past')
 
-    # @api.model
-    # def _referencable_models(self):
-    #     models = self.env['ir.model'].search([('field_id.name', '=', 'message_ids')])
-    #     return [(x.model, x.name) for x in models]
+    # Reference field
+    ref_doc_id = fields.Reference(
+        selection='_referencable_models', string='Reference Document'
+    )
+    
+
+    @api.model
+    def _referencable_models(self):
+        #import pdb; pdb.set_trace
+        models = self.env['res.partner'].search([])
+        return [(x.id, x.name) for x in models]
     
     # # Method for computed field
     # @api.constrains('date_release')
