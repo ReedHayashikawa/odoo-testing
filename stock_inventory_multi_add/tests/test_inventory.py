@@ -3,10 +3,10 @@
 import odoo.tests.common as common
 
 
-class TestSale(common.TransactionCase):
+class TestInventory(common.TransactionCase):
 
     def setUp(self):
-        super(TestSale, self).setUp()
+        super(TestInventory, self).setUp()
 
         self.product_9 = self.env.ref("product.product_product_9")
         self.product_11 = self.env.ref("product.product_product_11")
@@ -17,12 +17,12 @@ class TestSale(common.TransactionCase):
             Check products are presents
         """
 
-        so = self.env["sale.order"].create(
+        so = self.env["stock.inventory"].create(
             {"partner_id": self.env.ref("base.res_partner_2").id})
 
-        wiz_obj = self.env['sale.import.products']
+        wiz_obj = self.env['inventory.import.products']
         wizard = wiz_obj.with_context(active_id=so.id,
-                                      active_model='sale.order')
+                                      active_model='stock.inventory')
 
         products = [(6, 0, [self.product_9.id, self.product_11.id])]
 

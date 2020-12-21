@@ -18,7 +18,7 @@
     </record>
 
     <!-- ACTION -->
-    <record id="action_import_product_to_sale" model="ir.actions.act_window">
+    <record id="action_import_product_to_inventory" model="ir.actions.act_window">
         <field name="name">Import Products</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">inventory.import.products</field>
